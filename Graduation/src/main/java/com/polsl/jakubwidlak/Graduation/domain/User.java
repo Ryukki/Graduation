@@ -26,13 +26,13 @@ public class User {
     @Column
     private Integer u_currentPoints;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transaction> transactionList = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviewList = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Rating> ratingList = new ArrayList<>();
 
     public User(String name, String surname, String mail) {
@@ -44,6 +44,10 @@ public class User {
     }
 
     protected User () {}
+
+    public Long getU_id() {
+        return u_id;
+    }
 
     public String getU_name() {
         return u_name;
