@@ -1,6 +1,7 @@
-package com.pols.jakubwidlak.Graduation.domain;
+package domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.polsl.jakubwidlak.Graduation.Repositories;
+package Repositories;
 
-import com.polsl.jakubwidlak.Graduation.domain.Transaction;
+import domain.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {

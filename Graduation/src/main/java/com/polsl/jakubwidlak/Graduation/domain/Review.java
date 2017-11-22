@@ -1,6 +1,7 @@
-package com.pols.jakubwidlak.Graduation.domain;
+package domain;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
 public class Review {
     @Id
     @GeneratedValue
-    private rw_id;
+    private Long rw_id;
 
     @Column
     private Date rw_date;
@@ -23,6 +24,10 @@ public class Review {
     }
 
     protected Review() {}
+
+    public Long getRw_id() {
+        return rw_id;
+    }
 
     public Date getRw_date() {
         return rw_date;

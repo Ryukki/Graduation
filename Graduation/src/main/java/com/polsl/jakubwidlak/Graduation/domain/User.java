@@ -1,4 +1,4 @@
-package com.pols.jakubwidlak.Graduation.domain;
+package domain;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class User {
         this.u_surname = surname;
         this.u_mail = mail;
         this.u_currentPoints = 0;
-        this.u_totalPoints = 0;
+        this.u_totalPoints = Long.valueOf(0);
     }
 
     protected User () {}
@@ -77,7 +77,7 @@ public class User {
 
     public void changePoints(Integer points) {
         if (points>0)
-            this.u_totalPoints=+points;
+            this.u_totalPoints= Long.valueOf(+points);
         this.u_currentPoints+=points;
     }
 }
