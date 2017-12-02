@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<style type="text/css">
+    body {
+        background-color: #fff0ca;
+    }
+    div.inline {
+        height: 225px;
+        width: 50%;
+        float:left;
+    }
+    div.inlinesmall {
+        height: 50px;
+        width: 25%;
+        float:left;
+    }
+    .clearBoth { clear:both; }
+</style>
+
+<div class="inlinesmall">
+    <form action="/login">
+        <div class="inlinesmall">
+            <input type="submit" value="Log Out"/>
+        </div>
+    </form>
+    <form action="/adminmain">
+        <div class="inlinesmall">
+            <input type="submit" value="Main Page"/>
+        </div>
+    </form>
+    <form action="/offers">
+        <div class="inlinesmall">
+            <input type="submit" value="Manage offers"/>
+        </div>
+    </form>
+    <form action="/users">
+        <div class="inlinesmall">
+            <input type="submit" value="View users"/>
+        </div>
+    </form>
+    <br class="clearBoth" />
+</div>
+<br class="clearBoth" />
+<div class="inline">
+    <div class="inline">
+        <form action="/adminmain">
+            Change currency to points conversion rate:<br>
+            <label for="c2p">1 Euro equals: </label>
+            <input type="number" name="c2p" id="c2p"/>points.<br>
+            Change points to currency conversion rate:<br>
+            <label for="p2c">10 points equals: </label>
+            <input type="number" name="p2c" id="p2c"/>Euro.<br>
+            <input type="submit" value="Change Conversion"/>
+        </form>
+    </div>
+
+    <div class="inline">
+        <form action="/adminmain">
+            Set points assigned for user actions:<br>
+            <label for="accountCreation">Creating account: </label>
+            <input type="number" name="accountCreation" id="accountCreation"/>points.<br>
+            <tr th:text="'Current value: ' + ${systemSettings.accountCreation}">Current value</tr>
+            <br>
+            <label for="userRefferal">Reffering user: </label>
+            <input type="number" name="userRefferal" id="userRefferal"/>points.<br>
+            <tr th:text="'Current value: ' + ${systemSettings.userRefferal}">Current value</tr>
+            <br>
+            <label for="productRating">Rating a product: </label>
+            <input type="number" name="productRating" id="productRating"/>points.<br>
+            <tr th:text="'Current value: ' + ${systemSettings.productRating}">Current value</tr>
+            <br>
+            <label for="productReview">Reviewing a product: </label>
+            <input type="number" name="productReview" id="productReview"/>points.<br>
+            <tr th:text="'Current value: ' + ${systemSettings.productReview}">Current value</tr>
+            <br>
+            <input type="submit" value="Change"/>
+        </form>
+    </div>
+    <br class="clearBoth" />
+</div>
+<br class="clearBoth" />
+<div class="inline">
+<!--po jednej stronie wyświetlać poziomy z porzyciskami usuń albo edytuj, przy edycji reload strony - po prawej stronie okno edycji/dodawania nowych
+    jezeli dodaje sie poziom ktory wchodzi w granice innych to tamte się zmniejszają dostosowujac nowe granice-->
+    <div class="inline">
+        <table>
+            Existing loyalty levels:
+            <th:block th:object="${systemSettings}">
+                <tr th:each="level: *{level}">
+                    <td th:text="${level}">Level.toString()</td>
+                    <td><input type="submit" value="Edit"/></td>
+                    <td><input type="submit" value="Delete"/></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+    <div class="inline">
+        <div th:if="${systemSettings.levelEdit == true}">
+            <form action="/adminmain">
+                <p th:text="'Editing level:' + ${systemSettings.editedLevel.name}">Edited Level</p>
+                <label for="lowerBound">Lower bound: </label>
+                <input type="number" name="lowerBound" id="lowerBound"/>points.<br>
+                <tr th:text="'Current value: ' + ${systemSettings.editedLevel.lowerBound}">Lower bound</tr>
+                <br>
+                <label for="upperBound">Upper bound: </label>
+                <input type="number" name="upperBound" id="upperBound"/>points.<br>
+                <tr th:text="'Current value: ' + ${systemSettings.editedLevel.upperBound}">Upper bound</tr>
+                <br>
+                <input type="submit" value="Save Edit"/>
+            </form>
+        </div>
+        <div th:if="${systemSettings.levelEdit != true}">
+            <form action="/adminmain">
+                <p >Adding new level:</p>
+                <label for="levelName">Name: </label>
+                <input type="text" name="levelName" id="levelName"/>points.<br>
+                <br>
+                <label for="lowerBoundN">Lower bound: </label>
+                <input type="number" name="lowerBoundN" id="lowerBoundN"/>points.<br>
+                <br>
+                <label for="upperBoundN">Upper bound: </label>
+                <input type="number" name="upperBoundN" id="upperBoundN"/>points.<br>
+                <br>
+                <input type="submit" value="Add"/>
+            </form>
+        </div>
+    </div>
+    <br class="clearBoth" />
+</div>
+<br class="clearBoth" />
+</body>
+</html>

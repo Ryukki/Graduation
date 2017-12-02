@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<style type="text/css">
+    body {
+        background-color: #fff0ca;
+    }
+    div.inline {
+        height: 225px;
+        width: 50%;
+        float:left;
+    }
+    div.inlinesmall {
+        height: 50px;
+        width: 25%;
+        float:left;
+    }
+    .clearBoth { clear:both; }
+</style>
+
+<div class="inlinesmall">
+    <form action="/login">
+        <div class="inlinesmall">
+            <input type="submit" value="Log Out"/>
+        </div>
+    </form>
+    <form action="/adminmain">
+        <div class="inlinesmall">
+            <input type="submit" value="Main Page"/>
+        </div>
+    </form>
+    <form action="/offers">
+        <div class="inlinesmall">
+            <input type="submit" value="Manage offers"/>
+        </div>
+    </form>
+    <form action="/users">
+        <div class="inlinesmall">
+            <input type="submit" value="View users"/>
+        </div>
+    </form>
+    <br class="clearBoth" />
+</div>
+<br class="clearBoth" />
+<div class="inline">
+    <div class="inline">
+        Current offers:
+        <!--Oferty trzymane tylko przez pewien czas po przeterminowaniu-->
+        <th:block th:object="${systemSettings}">
+            <tr th:each="offer: *{offers}">
+                <td th:text="${offer}">Offer.toString()</td>
+                <td><input type="submit" value="Edit"/></td>
+                <td><input type="submit" value="Delete"/></td>
+            </tr>
+        </th:block>
+    </div>
+    <div class="inline">
+        <div th:if="${systemSettings.offerEdit == true}">
+            <form action="/adminmain">
+                <p th:text="'Editing offer:' + ${systemSettings.editedOffer.name}">Edited Offer</p>
+                <label for="startDate">Start date: </label>
+                <input type="date" name="startDate" id="startDate"/><br>
+                <tr th:text="'Current value: ' + ${systemSettings.editedOffer.startDate}">Start Date</tr>
+                <br>
+                <label for="endDate">End Date: </label>
+                <input type="date" name="endDate" id="endDate"/><br>
+                <tr th:text="'Current value: ' + ${systemSettings.editedOffer.endDate}">End Date</tr>
+                <br>
+                <label for="offerText">Offer Text: </label>
+                <input type="text" name="offerText" id="offerText"/><br>
+                <tr th:text="'Current value: ' + ${systemSettings.editedOffer.offerText}">Offer Text</tr>
+                <br>
+                <input type="submit" value="Save Edit"/>
+            </form>
+        </div>
+        <div th:if="${systemSettings.levelEdit != true}">
+            <form action="/adminmain">
+                <p >Adding new offer:</p>
+                <label for="offerName">Name: </label>
+                <input type="text" name="offerName" id="offerName"/><br>
+                <br>
+                <label for="startDateN">Start date: </label>
+                <input type="date" name="startDateN" id="startDateN"/><br>
+                <br>
+                <label for="endDateN">End Date: </label>
+                <input type="date" name="endDateN" id="endDateN"/><br>
+                <br>
+                <label for="offerTextN">Offer Text: </label>
+                <input type="text" name="offerTextN" id="offerTextN"/><br>
+                <br>
+                <input type="submit" value="Add"/>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

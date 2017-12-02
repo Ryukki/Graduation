@@ -24,7 +24,7 @@
 </style>
 
 <div class="inlinesmall">
-    <form action="/logout">
+    <form action="/login">
         <div class="inlinesmall">
             <input type="submit" value="Log Out"/>
         </div>
@@ -38,17 +38,17 @@
 
 <div class="inline">
     <div class="inline">
-        <form action="/review">
+        <form action="/userview">
             <label for="productID">Product ID: </label>
-            <input type="text" name="productID" /><br>
+            <input type="number" name="productID" /><br>
             <textarea name="review" rows="10" cols="30"/></textarea><br>
             <input type="submit" value="Review"/>
         </form>
     </div>
     <div class="inline">
-        <form action="/rate">
+        <form action="/userview">
             <label for="productID">Product ID: </label>
-            <input type="text" name="productID" id="productID" /><br>
+            <input type="number" name="productID" id="productID" /><br>
             <select name="rate" size="5">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -67,9 +67,11 @@
     <div class="inline">
         <form action="/buy">
             <label for="price">Product price: </label>
-            <input type="text" name="price" id="price"/><br>
+            <input type="number" name="price" id="price"/><br>
             <label for="usedPoints">Redeem points: </label>
-            <input type="text" name="usedPoints" id="usedPoints"/><br>
+            <input type="number" name="usedPoints" id="usedPoints"/>
+            <tr th:text="'Out of ' + ${userObject.loyaltyPoints}">points</tr>
+            <br>
             <input type="submit" value="Review"/>
         </form>
     </div>
