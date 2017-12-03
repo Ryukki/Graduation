@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name="TRANSACTION")
 public class Transaction {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long t_id;
 
     @Column

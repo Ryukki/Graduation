@@ -9,7 +9,7 @@ import java.util.List;
 @Table(name="RATING")
 public class Rating {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long rg_id;
 
     @Column

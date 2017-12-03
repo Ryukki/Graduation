@@ -8,22 +8,23 @@ import java.util.List;
 @Table(name="USER")
 public class User {
     @Id
-    @GeneratedValue
+    @Column(name="U_ID")
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long u_id;
 
-    @Column
+    @Column(name="U_NAME")
     private String u_name;
 
-    @Column
+    @Column(name="U_SURNAME")
     private String u_surname;
 
-    @Column
+    @Column(name="U_MAIL")
     private String u_mail;
 
-    @Column
+    @Column(name="U_TOTALPOINTS")
     private Long u_totalPoints;
 
-    @Column
+    @Column(name="U_CURRENTPOINTS")
     private Integer u_currentPoints;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
